@@ -1,0 +1,50 @@
+<html>
+  <head>
+    <title>Edit Post</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <h1
+      class="text-center bg-gradient-to-r from-indigo-600 to-pink-500 py-4 mb-6"
+    >
+      <span
+        class="text-white text-2xl font-semibold italic text-center text-slate-900"
+        >Edit Post</span
+      >
+    </h1>
+    <form
+      method="POST"
+      action=""
+      enctype="multipart/form-data"
+      class="px-5 place-content-around"
+    >
+      {% csrf_token %} {% for field in form %}
+      <div class="block">
+        {{ field.errors }}
+        <div class="block text-lg font-medium text-slate-700 my-2">
+          Update Blog {{ field.label }}
+        </div>
+        {{ field }} {% if field.widget_type == 'email' %}
+        <p class="mt-2 invisible peer-invalid:visible text-red-600 text-sm">
+          Provide the valid email
+        </p>
+        {% endif %}
+      </div>
+      {% endfor %}
+      <button
+        type="submit"
+        class="inline-flex place-content-center place-items-center w-2/5 text-md mr-4 py-2 px-4 rounded-full border-0 font-semibold bg-violet-50 text-violet-700 hover:bg-violet-200"
+      >
+        <span class="relative flex h-3 w-3">
+          <span
+            class="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"
+          ></span>
+          <span
+            class="relative inline-flex rounded-full h-3 w-3 bg-sky-500"
+          ></span>
+        </span>
+        <span class="mx-2">Update Post</span>
+      </button>
+    </form>
+  </body>
+</html>
